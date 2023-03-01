@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookHouse.Clients.Magfa", "BookHouse.Clients.Magfa\BookHouse.Clients.Magfa.csproj", "{1B0E158B-38B3-4B93-B5E2-96F8A762C31E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B0E158B-38B3-4B93-B5E2-96F8A762C31E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0E158B-38B3-4B93-B5E2-96F8A762C31E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0E158B-38B3-4B93-B5E2-96F8A762C31E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0E158B-38B3-4B93-B5E2-96F8A762C31E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09E8385B-7E4C-455F-A204-8A5422B29B7D}
+	EndGlobalSection
+EndGlobal
