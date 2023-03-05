@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BookHouse.Clients.Magfa
+﻿namespace BookHouse.Clients.Magfa
 {
     public class MagfaClientOptions
     {

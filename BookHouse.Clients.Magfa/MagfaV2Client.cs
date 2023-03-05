@@ -1,20 +1,15 @@
 ﻿using BookHouse.Clients.Magfa.Models;
-using BookHouse.Clients.Magfa.Resources;
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Serializers.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Resources;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml.XPath;
 
 namespace BookHouse.Clients.Magfa
 {
     /// <summary>
-    /// سرويس ‍HTTP v2 بهينه‌سازی‌شده‌ی سرويس HTTP v1 با متدهای REST و به صورت امن HTTPS، 
+    /// سرويس ‍HTTP v2 بهينه‌سازی‌شده‌ی سرويس HTTP v1 با متدهای REST و به صورت امن HTTPS،
     /// طراحی شده و به راحتی در همه‌ی زبان‌های برنامه‌نويسی قابل استفاده است. به دلیل سربار کم این سرويس،
     /// پهنای باند مصرفی در آن بسیار اندک خواهد بود. شایان ذکر است در این سرويس نیز تنها از UTF-8 پشتيبانی می‌شود.
     /// افزون بر امکانات نسخه‌ی v1 امکان در‌یافت پيامک‌های ورودی نيز در اين سرويس فراهم شده است.
@@ -27,13 +22,12 @@ namespace BookHouse.Clients.Magfa
         private readonly RestClient _restClient;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="options"></param>
         /// <exception cref="ArgumentNullException"></exception>
         public MagfaV2Client(MagfaClientOptions options)
         {
-
             if (options == null) throw new ArgumentNullException(nameof(options));
             if (options.Username == null) throw new ArgumentNullException(nameof(options.Username));
             if (options.Password == null) throw new ArgumentNullException(nameof(options.Password));
@@ -53,7 +47,6 @@ namespace BookHouse.Clients.Magfa
             _restClient.AddDefaultHeader("cache-control", "no-cache");
             _restClient.AddDefaultHeader("accept", "application/json");
         }
-
 
         /// <summary>
         /// دريافت مانده اعتبار حساب
@@ -84,7 +77,6 @@ namespace BookHouse.Clients.Magfa
                 throw result.ErrorException ?? new Exception(result.ErrorMessage);
             }
         }
-
 
         /// <summary>
         /// ارسال پيامک به يک گيرنده

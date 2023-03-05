@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BookHouse.Clients.Magfa.Models
+﻿namespace BookHouse.Clients.Magfa.Models
 {
     public class MagfaSendResult : MagfaBaseResult
     {
         public MagfaMessage[] Messages { get; set; }
     }
-
 
     public class MagfaMessage : MagfaBaseResult
     {
@@ -19,6 +14,4 @@ namespace BookHouse.Clients.Magfa.Models
         public float? Tariff { get; set; }
         public string Alphabet { get; set; }
     }
-
 }
-
