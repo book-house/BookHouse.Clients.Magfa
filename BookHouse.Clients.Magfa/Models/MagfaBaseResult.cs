@@ -11,7 +11,7 @@ namespace BookHouse.Clients.Magfa.Models
     {
         public int Status { get; set; }
 
-        [JsonIgnore]
-        public string StatusDescription => MagfaStatus.ResourceManager.GetString(Status.ToString());
+        //[JsonIgnore]
+        //public string StatusDescription => MagfaStatus.ResourceManager.GetString(Status.ToString());
     }
 }

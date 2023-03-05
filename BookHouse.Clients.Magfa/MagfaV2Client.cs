@@ -13,17 +13,26 @@ using System.Xml.XPath;
 
 namespace BookHouse.Clients.Magfa
 {
-    public class MagfaV2Client
+    /// <summary>
+    /// سرويس ‍HTTP v2 بهينه‌سازی‌شده‌ی سرويس HTTP v1 با متدهای REST و به صورت امن HTTPS، 
+    /// طراحی شده و به راحتی در همه‌ی زبان‌های برنامه‌نويسی قابل استفاده است. به دلیل سربار کم این سرويس،
+    /// پهنای باند مصرفی در آن بسیار اندک خواهد بود. شایان ذکر است در این سرويس نیز تنها از UTF-8 پشتيبانی می‌شود.
+    /// افزون بر امکانات نسخه‌ی v1 امکان در‌یافت پيامک‌های ورودی نيز در اين سرويس فراهم شده است.
+    /// همانند نسخه v1، در اين سرويس نيز سامانه به ازای هر پيامک ارسالی، شناسه‌ای یکتا جهت پيگیری وضعيت ارایه می‌نمايد.همچنین برای افزايش سرعت ارسال می‌توانيد از فراخوانی‌های همزمان استفاده نماييد.
+    /// </summary>
+    /// <seealso href="https://messaging.magfa.com/ui/?public/wiki/api/http_v2">آدرس داکیومنت مگفا</seealso>
+    public class MagfaV2Client : IMagfaV2Client
     {
         private readonly MagfaClientOptions _options;
         private readonly RestClient _restClient;
-        private readonly ResourceManager _resourceManager;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public MagfaV2Client(MagfaClientOptions options)
         {
-
-            _resourceManager = new ResourceManager(typeof(MagfaStatus));
-
 
             if (options == null) throw new ArgumentNullException(nameof(options));
             if (options.Username == null) throw new ArgumentNullException(nameof(options.Username));
@@ -45,23 +54,27 @@ namespace BookHouse.Clients.Magfa
             _restClient.AddDefaultHeader("accept", "application/json");
         }
 
-        public class BalanceResult
-        {
-            public int Status { get; set; }
-            public long Balance { get; set; }
-        }
 
+        /// <summary>
+        /// دريافت مانده اعتبار حساب
+        /// </summary>
+        /// <seealso href="https://messaging.magfa.com/ui/?public/wiki/api/http_v2#balance">
+        /// لینک مستندات
+        /// </seealso>
+        /// <returns>میزان موجودی باقی مانده</returns>
+        /// <exception cref="Exception">خطا در</exception>
+        /// <exception cref="MagfaException">حاوی پیام خطا</exception>
         public virtual async Task<long> BalanceAsync()
         {
             var request = new RestRequest("balance", Method.Get);
 
-            var result = await _restClient.ExecuteAsync<BalanceResult>(request);
+            var result = await _restClient.ExecuteAsync<MagfaBalanceResult>(request);
 
             if (result.IsSuccessful)
             {
                 if (result.Data.Status != 0)
                 {
-                    throw new Exception(_resourceManager.GetString(result.Data.Status.ToString()));
+                    throw new MagfaException(result.Data.Status);
                 }
 
                 return result.Data.Balance;
@@ -74,9 +87,11 @@ namespace BookHouse.Clients.Magfa
 
 
         /// <summary>
-        /// ارسال پیام به گیرنده
-        /// <seealso href="https://messaging.magfa.com/ui/?public/wiki/api/http_v2#send">لینک مستندات</seealso>
+        /// ارسال پيامک به يک گيرنده
         /// </summary>
+        /// <seealso href="https://messaging.magfa.com/ui/?public/wiki/api/http_v2#send">
+        /// لینک مستندات
+        /// </seealso>
         /// <param name="message">متن پیام</param>
         /// <param name="recipients">شماره گیرنده</param>
         /// <returns><seealso cref="MagfaMessage"/></returns>
@@ -87,15 +102,18 @@ namespace BookHouse.Clients.Magfa
         }
 
         /// <summary>
-        ///
-        /// <seealso href="https://messaging.magfa.com/ui/?public/wiki/api/http_v2#send">لینک مستندات</seealso>
+        /// ارسال پيامک به يک یا چند گيرنده (حداکثر يک‌صد (۱۰۰) عدد)
         /// </summary>
+        /// <seealso href="https://messaging.magfa.com/ui/?public/wiki/api/http_v2#send">
+        /// لینک مستندات
+        /// </seealso>
         /// <param name="messages">آرايه‌ای از پيام</param>
         /// <param name="recipients">آرايه‌ای از گيرنده</param>
         /// <param name="uids">آرايه‌ای از شناسه‌ی یکتای کاربر</param>
         /// <param name="senders">آرايه‌ای از فرستنده</param>
         /// <returns>آرایه ای از <seealso cref="MagfaMessage"/></returns>
-        /// <exception cref="Exception">در صورت وجود خطا متن آن در Message خواهد داشت</exception>
+        /// <exception cref="Exception">خطای ارتباط با سرویس</exception>
+        /// <exception cref="MagfaException">در صورت وجود خطا متن آن در Message خواهد داشت</exception>
         public virtual async Task<MagfaMessage[]> SendAsync(string[] messages, string[] recipients, long[] uids = null, string[] senders = null)
         {
             if (senders == null)
@@ -122,7 +140,7 @@ namespace BookHouse.Clients.Magfa
             {
                 if (result.Data.Status != 0)
                 {
-                    throw new Exception(result.Data.StatusDescription);
+                    throw new MagfaException(result.Data.Status);
                 }
 
                 return result.Data.Messages;
