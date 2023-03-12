@@ -90,7 +90,15 @@ namespace BookHouse.Clients.Magfa
         public virtual async Task<MagfaMessage> SendAsync(string message, string recipients)
         {
             var res = await SendAsync(new[] { message }, new[] { recipients });
-            return res.First();
+            var messageRes = res.First();
+            if (messageRes.Status != 0)
+            {
+                throw new MagfaException(messageRes.Status);
+            }
+            else
+            {
+                return messageRes;
+            }
         }
 
         /// <summary>

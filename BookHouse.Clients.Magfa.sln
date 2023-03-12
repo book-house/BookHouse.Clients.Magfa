@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookHouse.Clients.Magfa", "BookHouse.Clients.Magfa\BookHouse.Clients.Magfa.csproj", "{1B0E158B-38B3-4B93-B5E2-96F8A762C31E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookHouse.Clients.Magfa", "BookHouse.Clients.Magfa\BookHouse.Clients.Magfa.csproj", "{1B0E158B-38B3-4B93-B5E2-96F8A762C31E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookHouse.Clients.Magfa.AspNetCore", "BookHouse.Clients.Magfa.AspNetCore\BookHouse.Clients.Magfa.AspNetCore.csproj", "{2FB79CD6-751B-4B07-86E4-F0F1BD1924FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagfaSample", "MagfaSample\MagfaSample.csproj", "{FED96993-3A91-4BB7-95E4-8941D315FA71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{1B0E158B-38B3-4B93-B5E2-96F8A762C31E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B0E158B-38B3-4B93-B5E2-96F8A762C31E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B0E158B-38B3-4B93-B5E2-96F8A762C31E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FB79CD6-751B-4B07-86E4-F0F1BD1924FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FB79CD6-751B-4B07-86E4-F0F1BD1924FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FB79CD6-751B-4B07-86E4-F0F1BD1924FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FB79CD6-751B-4B07-86E4-F0F1BD1924FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED96993-3A91-4BB7-95E4-8941D315FA71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED96993-3A91-4BB7-95E4-8941D315FA71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED96993-3A91-4BB7-95E4-8941D315FA71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED96993-3A91-4BB7-95E4-8941D315FA71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
